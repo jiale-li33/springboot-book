@@ -7,4 +7,21 @@
     <select id="queryAll" resultType="Class">
         select * from class
     </select>
+    <select id="queryClassById" resultType="Class">
+        select * from class where id=#{id}
+    </select>
+    <insert id="addClass">
+        insert into class(`name`,descr) values(#{name},#{descr})
+    </insert>
+    <update id="edit">
+        update class
+        <set>
+            <if test="name != null and name != '' ">`name`=#{name},</if>
+            <if test="descr != null and descr != '' ">`descr`=#{descr},</if>
+        </set>
+        where id=#{id}
+    </update>
+    <delete id="del">
+        delete from class where id=#{id}
+    </delete>
 </mapper>

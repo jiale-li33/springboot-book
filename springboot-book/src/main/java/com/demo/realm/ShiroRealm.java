@@ -1,6 +1,7 @@
 package com.demo.realm;
 
 
+import com.demo.entity.Admin;
 import com.demo.entity.Customer;
 import com.demo.service.AdminService;
 import com.demo.service.CustomerService;
@@ -33,7 +34,8 @@ public class ShiroRealm extends AuthorizingRealm {
         Object credentials = authenticationToken.getCredentials();
         String password = new String((char[]) credentials);
         Customer login = customerService.login(username, password);
-        if (login!=null){
+        Admin login1 = adminService.login(username, password);
+        if (login!=null || login1!=null){
             SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(username, password, "");
             return simpleAuthenticationInfo;
         }

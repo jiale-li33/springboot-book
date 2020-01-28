@@ -18,4 +18,29 @@ public class BookServiceImpl implements BookService {
     public List<Book> queryAll(QueryVo queryVo) {
         return bookDao.queryAll(queryVo);
     }
+
+    @Override
+    public List<Book> queryAllWithClass(QueryVo queryVo) {
+        return bookDao.queryAllWithClass(queryVo);
+    }
+
+    @Override
+    public Book queryBookById(Integer id) {
+        return bookDao.queryBookById(id);
+    }
+
+    @Override
+    public Integer addBook(Book book) {
+        return bookDao.addBook(book);
+    }
+
+    @Override
+    public Integer edit(Book book) {
+        return bookDao.edit(book);
+    }
+
+    @Override
+    public Integer del(Integer id) {
+        return bookDao.del(id);
+    }
 }

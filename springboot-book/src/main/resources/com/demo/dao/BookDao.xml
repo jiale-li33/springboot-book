@@ -3,6 +3,13 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.demo.dao.BookDao">
+
+    <resultMap id="bookWithClass" type="com.demo.entity.Book">
+        <id property="id" column="id"/>
+        <association property="cls" javaType="com.demo.entity.Class">
+            <id property="id" column="cid"/>
+        </association>
+    </resultMap>
     <select id="queryAll" resultType="Book">
         select * from book
         <trim prefix="where" prefixOverrides="and">
@@ -10,5 +17,44 @@
         </trim>
     </select>
 
+    <select id="queryAllWithClass" resultMap="bookWithClass">
 
+        select
+        book.*,
+        c.id cid,
+        c.name,
+        c.descr
+        from book
+        left join `class` c on book.classid=c.id
+
+    </select>
+
+    <select id="queryBookById" resultMap="bookWithClass">
+        select
+        book.*,
+        c.id cid,
+        c.name,
+        c.descr
+        from book
+        left join `class` c on book.classid=c.id
+        where book.id=#{id}
+    </select>
+    <insert id="addBook">
+        insert into book(bookname,author,price,classid,descr,path) values(#{bookname},#{author},#{price},#{classid},#{descr},#{path})
+    </insert>
+    <update id="edit">
+        update book
+        <set>
+            <if test="bookname != null and bookname != '' ">`bookname`=#{bookname},</if>
+            <if test="author != null and author != '' ">`author`=#{author},</if>
+            <if test="price != null and price != '' ">`price`=#{price},</if>
+            <if test="classid != null and classid != '' ">classid=#{classid},</if>
+            <if test="descr != null and descr != '' ">descr=#{descr},</if>
+            <if test="path != null and path != '' ">path=#{path},</if>
+        </set>
+        where id=#{id}
+    </update>
+    <delete id="del">
+        delete from book where id=#{id}
+    </delete>
 </mapper>

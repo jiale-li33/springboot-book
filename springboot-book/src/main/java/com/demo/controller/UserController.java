@@ -1,5 +1,6 @@
 package com.demo.controller;
 
+import com.demo.entity.Class;
 import com.demo.entity.Customer;
 import com.demo.service.CustomerService;
 import org.apache.shiro.SecurityUtils;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -49,5 +51,18 @@ public class UserController {
         Integer flag = customerService.register(customer);
 
         return "redirect:login";
+    }
+    @RequestMapping("/userlist")
+    public String classlist(Model model) {
+        //调用方法
+        List<Customer> users = customerService.queryAll();
+        //返回PageInfo对象
+        model.addAttribute("userList",users);
+        return "behind/userList";
+    }
+    @RequestMapping("/del")
+    public String del(Integer id,Model model) {
+        Integer flag = customerService.del(id);
+        return "redirect:userlist";
     }
 }

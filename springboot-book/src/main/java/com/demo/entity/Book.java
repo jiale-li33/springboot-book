@@ -16,6 +16,8 @@ public class Book {
     private String descr;
     private String path;
 
+    private Class cls;
+
     @Override
     public String toString() {
         return "Book{" +

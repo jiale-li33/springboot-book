@@ -10,4 +10,13 @@ import java.util.List;
 public interface BookDao {
     List<Book> queryAll(QueryVo queryVo);
 
+    List<Book> queryAllWithClass(QueryVo queryVo);
+
+    Book queryBookById(Integer id);
+
+    Integer addBook(Book book);
+
+    Integer edit(Book book);
+
+    Integer del(Integer id);
 }

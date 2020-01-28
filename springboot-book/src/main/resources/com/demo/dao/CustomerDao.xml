@@ -10,5 +10,10 @@
     <insert id="regiter">
         insert into customer(`name`,psw,phone,email,address) values(#{name},#{psw},#{phone},#{email},#{address})
     </insert>
-
+    <select id="queryAll" resultType="Customer">
+        select * from customer
+    </select>
+    <delete id="del">
+        delete from customer where id=#{id}
+    </delete>
 </mapper>

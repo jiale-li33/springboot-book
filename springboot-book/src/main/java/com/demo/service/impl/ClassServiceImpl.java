@@ -17,4 +17,24 @@ public class ClassServiceImpl implements ClassService {
     public List<Class> queryAll() {
         return classDao.queryAll();
     }
+
+    @Override
+    public Class queryClassById(Integer id) {
+        return classDao.queryClassById(id);
+    }
+
+    @Override
+    public Integer addClass(Class cls) {
+        return classDao.addClass(cls);
+    }
+
+    @Override
+    public Integer edit(Class cls) {
+        return classDao.edit(cls);
+    }
+
+    @Override
+    public Integer del(Integer id) {
+        return classDao.del(id);
+    }
 }
