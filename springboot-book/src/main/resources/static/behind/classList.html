@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div style="position:absolute; left: 1px;">
+    <h1>信息管理</h1>
+    <ul>
+        <li>书籍管理
+            <ul>
+                <li><a href="/book/booklist">查看所有书籍</a></li>
+                <li><a href="/book/add">添加书籍</a></li>
+            </ul>
+        </li>
+    </ul>
+    <ul>
+        <li>书籍分类管理
+            <ul>
+                <li><a href="/class/classlist">查看所有书籍分类</a></li>
+                <li><a href="/class/add">添加书籍分类</a></li>
+            </ul>
+        </li>
+    </ul>
+    <ul>
+        <li>会员管理
+            <ul>
+                <li>
+                    <a href="/user/userlist">查看所有会员</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+</div>
+<center>
+    <div >
+        <h1 th:text="'欢迎'+${session.admin.name}+'来到书店管理系统'">欢迎</h1>
+        <h3 style="position: absolute; right: 100px;"><a href="#">退出登录</a></h3>
+    </div>
+    <div style="position:absolute; left: 550px;top: 150px">
+        <h3>书籍分类</h3>
+        <table border="1px">
+            <tr>
+                <th>序号</th>
+                <th>分类名称</th>
+                <th>分类说明</th>
+                <th>管理</th>
+            </tr>
+            <tr th:each="class:${classList}">
+                <td th:text="${classStat.count}"></td>
+                <td th:text="${class.name}"></td>
+                <td th:text="${class.descr}"></td>
+                <td><a th:href="@{'/class/edit?id='+${class.id}}">修改</a>&nbsp;&nbsp;&nbsp;<a th:href="@{'/class/del?id='+${class.id}}">删除</a></td>
+            </tr>
+        </table>
+    </div>
+</center>
+</body>
+<style type="text/css">
+    .lili{
+        display:inline
+    }
+</style>
+</html>

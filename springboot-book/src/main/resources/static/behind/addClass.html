@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="position:absolute; left: 1px;">
+    <h1>信息管理</h1>
+    <ul>
+        <li>书籍管理
+            <ul>
+                <li><a href="/book/booklist">查看所有书籍</a></li>
+                <li><a href="/book/add">添加书籍</a></li>
+            </ul>
+        </li>
+    </ul>
+    <ul>
+        <li>书籍分类管理
+            <ul>
+                <li><a href="/class/classlist">查看所有书籍分类</a></li>
+                <li><a href="/class/add">添加书籍分类</a></li>
+            </ul>
+        </li>
+    </ul>
+    <ul>
+        <li>会员管理
+            <ul>
+                <li>
+                    <a href="/user/userlist">查看所有会员</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+</div>
+<center>
+    <div >
+        <h1 th:text="'欢迎'+${session.admin.name}+'来到书店管理系统'">欢迎</h1>
+        <h3 style="position: absolute; right: 100px;"><a href="#">退出登录</a></h3>
+    </div>
+    <div style="position:absolute; left: 550px;top: 150px">
+        <h3>添加书籍分类</h3>
+        <form action="/class/save" method="post">
+            <input type="hidden" th:value="${class.id}" name="id">
+            <table border="1px">
+                <tr>
+                    <td>分类名称</td>
+                    <td><input type="text" th:value="${class.name}" name="name"></td>
+                </tr>
+                <tr>
+                    <td>分类说明</td>
+                    <td><input type="text" th:value="${class.descr}" name="descr"></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">
+                        <center>
+                            <button type="submit">保存</button>&nbsp;&nbsp;
+                            <button type="reset">重置</button>&nbsp;&nbsp;
+                            <a href="/class/classlist">返回</a>
+                        </center>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</center>
+</body>
+<script>
+
+</script>
+</html>
